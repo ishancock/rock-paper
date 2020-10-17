@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Rock-Paper-Scissors</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <script>
+            // Randomly return either 'Rock', 'Paper', or 'Scissors'
+            function computerPlay() {
+                let options = ['Rock', 'Paper','Scissors']
+                let guessInt = Math.floor(Math.random() * 3)
+                return options[guessInt]
+            }
+            // Plays a single round of Rock Paper Scissors
+            function playRound(playerSelection, computerSelection) {
+                if (typeof playerSelection !== 'string') {
+                    return('Invalid input. Please try again')
+                }
+                let player = playerSelection.toLowerCase()
+                let computer = computerSelection.toLowerCase()
+                // Tie
+                if (player === computer) {
+                    return(`Tie! Both selected ${player}`)
+                }
+                // Rock beats scissors losses to paper
+                else if (player === 'rock') {
+                    if (computer === 'scissors') {
+                        return(`You win! ${player} beats ${computer}`)
+                    }
+                    else {
+                        return(`You lose! ${computer} beats ${player}`)
+                    }
+                }
+                // Paper beats rock or loses to scissors
+                else if (player === 'paper') {
+                    if (computer === 'rock') {
+                        return(`You win! ${player} beats ${computer}`)
+                    }
+                    else {
+                        return(`You lose! ${computer} beats ${player}`)
+                    }
+                }
+                // Scissors beats paper or loses to rock
+                else if (player === 'scissors') {
+                    if (computer === 'paper') {
+                        return(`You win! ${player} beats ${computer}`)
+                    }
+                    else {
+                        return(`You lose! ${computer} beats ${player}`)
+                    }
+                }
+                else {
+                    return('Invalid input. Please try again')
+                }
+            }
+            // Plays five rounds of Rock Paper Scissors
+            function game() {
+                for (let i = 0; i < 5; i++) {
+                    const playerSelection = prompt("Please type either 'Rock', 'Paper', or 'Scissors'")
+                    console.log(playRound(playerSelection,computerPlay()))
+                }
+            }
+            // Run the code!
+            game()
+        </script>
+    </body>
+</html>
